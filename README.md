@@ -40,20 +40,25 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
 
 ### Jelaskan mengapa kita menggunakan ***virtual environment?*** Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan ***virtual environment***?
+Virtual environment sangat penting dalam pengembangan aplikasi web berbasis Django karena membantu mengisolasi proyek, memungkinkan manajemen dependensi yang efisien. Dengan menggunakan virtual environment, setiap proyek dapat memiliki dependensi dan paket Python yang terisolasi, mencegah konflik dan masalah versi. Ini juga membuat pengelolaan dependensi proyek menjadi lebih mudah.
+
+Selain itu, virtual environment juga meningkatkan keamanan proyek dengan menghindari konflik antara paket-paket yang berbeda di proyek yang berbeda. Secara keseluruhan, penggunaan virtual environment adalah praktik terbaik dalam pengembangan aplikasi Django, memastikan kebersihan, isolasi, dan manajemen dependensi yang efisien.
+
+### Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 - **Model-View-Controller (MVC):**
-**Model:** Menyimpan data dan logika aplikasi.
-**View:** Menampilkan data dari model dan menghubungkannya dengan template.
-**Template:** Menentukan tampilan antarmuka pengguna.
+    - **Model:** Menyimpan data dan logika aplikasi.
+    - **View:** Menampilkan data dari model dan menghubungkannya dengan template.
+    - **Template:** Menentukan tampilan antarmuka pengguna.
 
 - **Model-View-Template (MVT):**
-**Model:** Menyimpan data dan logika aplikasi.
-**View:** Menampilkan data dari model dan menghubungkannya dengan template.
-**Template:** Mengatur tampilan HTML dan cara data dari Model ditampilkan dalam halaman web. 
+    - **Model:** Menyimpan data dan logika aplikasi.
+    - **View:** Menampilkan data dari model dan menghubungkannya dengan template.
+    - **Template:** Mengatur tampilan HTML dan cara data dari Model ditampilkan dalam halaman web. 
 
 - **Model-View-ViewModel (MVVM):**
-**Model:** Menyimpan data dan logika aplikasi.
-**View:** Menampilkan data dari model dan menghubungkannya dengan template.
-**ViewModel:** Memproses data dari Model dan mempersiapkannya untuk ditampilkan oleh View.
+    - **Model:** Menyimpan data dan logika aplikasi.
+    - **View:** Menampilkan data dari model dan menghubungkannya dengan template.
+    - **ViewModel:** Memproses data dari Model dan mempersiapkannya untuk ditampilkan oleh View.
 
 **Perbedaan:**
 Perbedaan antara MVC, MVT, dan MVVM terletak pada bagaimana mereka mengelola alur aplikasi. Dalam MVC, Controller mengendalikan alur aplikasi, sedangkan MVT menggantinya dengan Template untuk mengatur tampilan. MVVM memperkenalkan ViewModel yang memproses data dari Model dan memfasilitasi pengikatan data kuat antara Model dan View. Jadi, perbedaan utama adalah peran komponen tengah dalam mengelola logika dan alur aplikasi.
