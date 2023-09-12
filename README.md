@@ -37,7 +37,7 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
     - Melakukan deploy dari website adaptable sesuai ketentuan Tutorial 0
 
 ### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`.
-<img src='/aset/flowchart.png'>
+<img src='/aset/flowchart.jpg'>
 
 ### Jelaskan mengapa kita menggunakan ***virtual environment?*** Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan ***virtual environment***?
 Virtual environment sangat penting dalam pengembangan aplikasi web berbasis Django karena membantu mengisolasi proyek, memungkinkan manajemen dependensi yang efisien. Dengan menggunakan virtual environment, setiap proyek dapat memiliki dependensi dan paket Python yang terisolasi, mencegah konflik dan masalah versi. Ini juga membuat pengelolaan dependensi proyek menjadi lebih mudah.
