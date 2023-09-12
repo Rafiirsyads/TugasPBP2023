@@ -48,7 +48,7 @@ Selain itu, virtual environment juga meningkatkan keamanan proyek dengan menghin
 - **Model-View-Controller (MVC):**
     - **Model:** Menyimpan data dan logika aplikasi.
     - **View:** Menampilkan data dari model dan menghubungkannya dengan template.
-    - **Template:** Menentukan tampilan antarmuka pengguna.
+    - **Controller:** Menentukan tampilan antarmuka pengguna.
 
 - **Model-View-Template (MVT):**
     - **Model:** Menyimpan data dan logika aplikasi.
