@@ -9,12 +9,14 @@ from django.core import serializers
 # Create your views here.
 def show_main(request):
     items = Item.objects.all()
+    total_items = items.count()  # Menghitung jumlah item
 
     context = {
         'name': 'Rafi Irsyad Saharso',
         'npm': '2206082221',
         'class': 'A',
-        'items': items
+        'items': items,
+        'total_items': total_items  # Menambahkan total_items ke dalam konteks
     }
 
     return render(request, "main.html", context)
