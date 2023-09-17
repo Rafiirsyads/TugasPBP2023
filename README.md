@@ -4,7 +4,58 @@
 ## Link Aplikasi
 Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
-## Jawaban Soal
+## Jawaban Soal Tugas 3
+
+### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial)
+1. Membuat input `form` untuk menambahkan objek model pada app sebelumnya
+    - Buat file `forms.py` di folder "main" untuk membuat class `ItemForm` yang merupakan `ModelForm` untuk model `Item`. Ini mendefinisikan atribut yang akan ditampilkan dalam form
+    - Buat fungsi `create_item` dalam `views.py` yang mengelola input form. Dalam fungsi ini, form `ItemForm` diisi dengan data dari `request.POST` dan diverifikasi. Jika valid, data disimpan dan pengguna diarahkan kembali ke halaman utama
+    - Menambahkan fungsi untuk merender `create_item.html`
+    - Tambahkan `items = Item.objects.all()` pada fungsi `show_main` dalam `views.py` untuk mengambil semua objek `Item` dari database dan menyertakannya dalam konteks
+    - Import fungsi yang diperlukan dan tambahkan path URL untuk mengakses fungsi-fungsi ini dalam urls.py di "main"
+    - Buat file `create_item.htm`l dalam folder "templates" di "main" dan isi dengan kode yang sesuai untuk membuat antarmuka tabel dan formulir
+    - Tambahkan kode di `main.html` untuk menampilkan data item dalam bentuk tabel dan menambahkan tombol "Add New Product" yang mengarahkan ke halaman formulir
+2. Menambahkan Fungsi Views untuk Melihat Data dalam Berbagai Format:
+    - Buat fungsi `show_xml` dalam `views.py` dan path URL untuk mengaksesnya. Fungsi ini mengambil data `Item` dan mengembalikannya dalam format XML
+    - Buat fungsi `show_json` dalam `views.py` dan path URL untuk mengaksesnya. Fungsi ini mengambil data Item dan mengembalikannya dalam format JSON
+    - Buat fungsi s`how_xml_by_id` dalam `views.py` dan path URL untuk mengaksesnya. Fungsi ini mengambil data Item berdasarkan ID yang disediakan dan mengembalikannya dalam format XML
+    - Buat fungsi `show_json_by_id` dalam `views.py` dan path URL untuk mengaksesnya. Fungsi ini mengambil data Item berdasarkan ID yang disediakan dan mengembalikannya dalam format JSON
+
+### Apa perbedaan antara form `POST` dan form `GET` dalam Django?
+- **POST**
+    - Metode POST mengirimkan data atau nilai langsung ke target action tanpa memunculkannya di URL
+    - Dalam metode POST, variabel `$_POST` digunakan untuk menampung data atau nilai yang dikirim
+    - Metode POST memungkinkan pengiriman data yang berukuran tidak terbatas
+- **GET**
+    - Metode GET menampilkan data atau nilai dalam URL, yang kemudian akan ditangani oleh action
+    - Dalam metode GET, variabel `$_GET` digunakan untuk menampung data atau nilai yang ditempatkan dalam URL
+    - Metode GET memiliki batasan panjang URL maksimum sekitar 2047 karakter yang tidak boleh melebihi jumlah tersebut
+
+### Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+- **XML**
+    XML digunakan untuk pertukaran data terstruktur dengan struktur kuat menggunakan tag pembuka dan penutup, meskipun kurang mudah dibaca oleh manusia. Cocok untuk konfigurasi aplikasi, penyimpanan data terstruktur, dan integrasi dengan berbagai bahasa pemrograman
+- **JSON**
+    JSON digunakan untuk komunikasi data antar aplikasi dengan format notasi objek yang simpel, mudah dimengerti manusia, umum di pengembangan web dan API, serta lebih mudah diintegrasikan dengan bahasa pemrograman
+- **HTML**
+    HTML digunakan untuk membuat tampilan web, mengatur tampilan konten di peramban, memiliki struktur lebih sederhana dibandingkan dengan XML atau JSON, mudah dibaca, dan digunakan dalam pengembangan web untuk mengontrol tampilan dan interaksi pengguna.
+
+### Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+- **Kelegibilitas:** JSON mudah dibaca dan dipahami manusia
+- **Efisiensi:** Format JSON lebih ringkas dan efisien dalam penggunaan bandwidth
+- **Dukungan Universal:** JSON didukung oleh hampir semua bahasa pemrograman
+- **Integrasi JavaScript:** JSON terintegrasi dengan JavaScript, cocok untuk pengembangan web
+- **Umum dalam API Web:** JSON digunakan secara luas dalam API web modern
+- **Pendekatan Berbasis Objek:** JSON mendukung representasi objek, sejalan dengan pendekatan berbasis objek dalam pengembangan web
+- **Keamanan:** JSON jarang menghadapi masalah keamanan seperti serangan injeksi XML atau HTML
+
+### Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md`.
+<img src='/aset/HTML.jpg'>
+<img src='/aset/XML.jpg'>
+<img src='/aset/JSON.jpg'>
+<img src='/aset/XML by ID.jpg'>
+<img src='/aset/JSON by ID.jpg'>
+
+## Jawaban Soal Tugas 2
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara *step-by-step* 
 1. Membuat sebuah proyek Django baru.
