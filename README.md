@@ -49,6 +49,11 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 - **Keamanan:** JSON jarang menghadapi masalah keamanan seperti serangan injeksi XML atau HTML
 
 ### Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md`.
+<img src='/aset/HTML.jpg'>
+<img src='/aset/XML.jpg'>
+<img src='/aset/JSON.jpg'>
+<img src='/aset/XML by ID.jpg'>
+<img src='/aset/JSON by ID.jpg'>
 
 ## Jawaban Soal Tugas 2
 
