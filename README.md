@@ -8,19 +8,85 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial).
 1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
-    - Dalam `views.py` import fungsi yang dibutuhkan 
-    - Buat fungsi `register` yang berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
-    - Buat berkas HTML baru dengan nama `register.html` pada folder `main/template` untuk membuat template dari register
-    - Import `register` ke `urls.py`
-    - Tambahkan *path url* ke `urlpatterns` 
+    - **REGISTER**
+        - Dalam `views.py` import `redirect`, `UserCreationForm`, `messages `
+        - Buat fungsi `register` yang berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-*submit* dari form
+        - Buat berkas HTML baru dengan nama `register.html` pada folder `main/template` untuk membuat *template* dari *register*
+        - Import fungsi `register` ke `urls.py`
+        - Tambahkan *path url* ke `urlpatterns`
+    - **LOGIN**
+        - Dalam `views.py` import fungsi `authenticate`, `login`
+        - Buat fungsi `login` yang berfungsi untuk mengautentikasi pengguna yang ingin *login*
+        - Buat berkas HTML baru dengan nama `login.html` pada folder `main/template` untuk membuat *template* dari register
+        - Import `login_user` ke `urls.py`
+        - Tambahkan *path url* ke `urlpatterns`
+    **LOGOUT**
+        - Dalam `views.py` import fungsi `logout`
+        - Buat fungsi `logout` yang berfungsi untuk melakukan mekanisme *logout*
+        - Buka berkas `main.html` tambahkan potongan kode yang berfungsi untuk Add New Product pada berkas `main.html`
+        - Import `logout_user` ke `urls.py`
+        - Tambahkan *path url* ke `urlpatterns`
+
+2. Membuat **dua** akun pengguna dengan masing-masing **tiga** *dummy* data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun **di lokal**.
+<img src='/aset/Dummy1_Tugas4.jpg'>
+<img src='/aset/Dummy2_Tugas4.jpg'>
+
+3. Menghubungkan model `Item` dengan `User`.
+    - Import `user` pada `models.py`
+    - Pada model `Item` yang sudah dibuat, tambahkan `ForeignKey` yang berfungsi untuk menghubungkan satu produk dengan satu user melalui sebuah `relationship`, dimana sebuah produk pasti terasosiasikan dengan seorang user
+        - Pada `views.py` ubah fungsi `create_item`
+        - Tambahkan parameter `commit=False` yang digunakan  untuk mencegah Django agar tidak langsung menyimpan objek ke database
+        - Isi field `user` dengan objek `User` dari return value `request.user` untuk menandakan bahwa objek tersebut dimiliki oleh pengguna yang sedang login
+
+3. Menampilkan detail informasi pengguna yang sedang *logged* in seperti *username* dan menerapkan `cookies` seperti `last login` pada halaman utama aplikasi
+    - Ubah fungsi `show_main`
+        - Menampilkan objek `Item` yang terasosiasikan dengan pengguna yang sedang login dengan `items = Item.objects.filter(user=request.user)`
+        - Tambahkan kode `request.user.username`
+    - Dalam `views.py` dan import `HttpResponseRedirect`, `reverse`, dan `datetime`
+    - Pada fungsi `login_user` tambahkan fungsi `last_login` untuk melihat kapan terakhir kali pengguna melakukan *login*. Edit **blok** `if user is not None` dengan menambahkan kode:
+        - `login(request, user)`
+        - `response = HttpResponseRedirect(reverse("main:show_main"))`
+        - `response.set_cookie('last_login', str(datetime.datetime.now()))`
+        - `return response`
+    - Pada fungsi `show_main` tambahkan `'last_login': request.COOKIES['last_login']` ke dalam variabel `context`
+    - Ubah fungsi `logout_user` dengan menambahkan kode:
+        - `response = HttpResponseRedirect(reverse('main:login'))`
+        - `response.delete_cookie('last_login')`
+        - `return response`
+    - Pada berkas `main.html` tambahkan kode `<h5>Sesi terakhir login: {{ last_login }}</h5>`
 
 ### Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
+UserCreationForm adalah impor formulir bawaan yang memudahkan pembuatan formulir pendaftaran pengguna dalam aplikasi web. Dengan formulir ini, pengguna baru dapat mendaftar dengan mudah di situs web tanpa harus menulis kode dari awal.
+- **Kelebihan**
+    - **Cepat dan Mudah:** UserCreationForm memungkinkan pengembang untuk membuat formulir pendaftaran pengguna dengan cepat tanpa harus menulis kode dari awal.
+    - **Integrasi dengan Django:** UserCreationForm terintegrasi secara baik dengan berbagai fitur otentikasi Django, termasuk penggunaan password yang dihash dan proses validasi.
+    - **Keamanan Terintegrasi:** UserCreationForm sudah termasuk mekanisme keamanan yang umumnya diperlukan untuk mencegah serangan seperti SQL injection dan cross-site scripting (XSS).
+- **Kekurangan**
+    - **Terbatas pada Penggunaan Default:** UserCreationForm dirancang untuk pendaftaran pengguna dasar, sehingga memerlukan penyesuaian jika kita membutuhkan atribut atau data tambahan.
+    - **Tidak Termasuk Semua Fitur:** Hanya mencakup hal-hal dasar seperti username dan password, jadi kita perlu menambahkan fitur tambahan secara manual seperti verifikasi email atau konfirmasi kata sandi.
+    - **Ketergantungan pada Django:** Kita perlu menggunakan Django sebagai kerangka kerja pengembangan jika ingin menggunakan UserCreationForm. Jika kita mempertimbangkan kerangka kerja lain, ini mungkin tidak cocok.
 
 ### Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+**Autentikasi** dalam konteks Django adalah proses memeriksa apakah pengguna yang mencoba masuk ke sistem adalah benar-benar orang yang mereka katakan menjadi. Ini umumnya melibatkan proses login dengan menggunakan kombinasi username dan password.
+
+**Otorisasi** adalah langkah untuk menetapkan hak akses pengguna setelah mereka berhasil terotentikasi. Ini mengatur apa yang diizinkan untuk dilakukan oleh pengguna setelah masuk, termasuk akses ke halaman atau sumber daya tertentu.
+
+Keduanya hal diatas penting karena autentikasi memastikan pengguna yang sah, sementara otorisasi mengontrol akses mereka. Ini menjaga keamanan data dan sumber daya di aplikasi web.
 
 ### Apa itu *cookies* dalam konteks aplikasi web, dan bagaimana Django menggunakan *cookies* untuk mengelola data sesi pengguna?
+*Cookies* di aplikasi web adalah potongan data kecil yang disimpan di perangkat pengguna, berfungsi untuk menyimpan informasi seperti ID sesi atau preferensi, yang dapat diakses oleh server web selama interaksi pengguna dengan situs atau aplikasi tersebut.
+
+Django menggunakan *cookies* untuk mengelola data sesi pengguna dengan cara berikut:
+- **Membuat Sesi Pengguna:** Menciptakan sesi pengguna dan ID sesi unik saat akses atau masuk.
+- **Penyimpanan Data Sesi:** Menyimpan info sesi dalam cookies dan mengenkripsinya jika perlu.
+- **Mengakses Data Sesi:** Membaca cookies pengguna pada permintaan selanjutnya.
+- **Pembaruan Data Sesi:** Memungkinkan pengembang memperbarui sesi pengguna.
+- **Pengakhiran Sesi:** Membersihkan data sesi saat keluar atau sesi berakhir.
 
 ### Apakah penggunaan *cookies* aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+Dengan implementasi yang benar dan penggunaan di lingkungan yang aman, penggunaan *cookies* dalam pengembangan web biasanya merupakan praktik yang aman secara bawaan.
+
+Penggunaan *cookies* dalam pengembangan web bisa menimbulkan risiko seperti pelanggaran privasi, pencurian cookie, dan kerentanan terhadap serangan. Untuk menghindari masalah ini, penting bagi pengembang untuk melakukan beberapa hal, seperti memvalidasi data dengan baik, menggunakan HTTPS, dan melindungi aplikasi web dari ancaman serangan. Dengan cara ini, data pengguna dan privasi bisa lebih aman.
 
 ## Jawaban Soal Tugas 3
 

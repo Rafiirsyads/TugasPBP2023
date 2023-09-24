@@ -22,7 +22,7 @@ def show_main(request):
     total_items = items.count()  # Menghitung jumlah item
 
     context = {
-        'name': 'Rafi Irsyad Saharso',
+        'name': request.user.username,
         'npm': '2206082221',
         'class': 'A',
         'items': items,
