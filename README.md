@@ -20,7 +20,7 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
         - Buat berkas HTML baru dengan nama `login.html` pada folder `main/template` untuk membuat *template* dari register
         - Import `login_user` ke `urls.py`
         - Tambahkan *path url* ke `urlpatterns`
-    **LOGOUT**
+    - **LOGOUT**
         - Dalam `views.py` import fungsi `logout`
         - Buat fungsi `logout` yang berfungsi untuk melakukan mekanisme *logout*
         - Buka berkas `main.html` tambahkan potongan kode yang berfungsi untuk Add New Product pada berkas `main.html`
