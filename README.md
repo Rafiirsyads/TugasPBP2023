@@ -4,6 +4,24 @@
 ## Link Aplikasi
 Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
+## Jawaban Soal Tugas 4
+
+### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial).
+1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+    - Dalam `views.py` import fungsi yang dibutuhkan 
+    - Buat fungsi `register` yang berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
+    - Buat berkas HTML baru dengan nama `register.html` pada folder `main/template` untuk membuat template dari register
+    - Import `register` ke `urls.py`
+    - Tambahkan *path url* ke `urlpatterns` 
+
+### Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
+
+### Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+
+### Apa itu *cookies* dalam konteks aplikasi web, dan bagaimana Django menggunakan *cookies* untuk mengelola data sesi pengguna?
+
+### Apakah penggunaan *cookies* aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+
 ## Jawaban Soal Tugas 3
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial)
