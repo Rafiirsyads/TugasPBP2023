@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -43,6 +44,31 @@ def create_item(request):
 
     context = {'form': form}
     return render(request, "create_item.html", context)
+
+def increase_amount(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    item.amount += 1
+    item.save()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrease_amount(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    
+    # Mengurangi jumlah stok sebanyak satu jika stok lebih besar dari 0
+    if item.amount > 0:
+        item.amount -= 1
+        item.save()
+        
+    # Jika jumlah stok mencapai 0, hapus item dari inventori
+    if item.amount == 0:
+        item.delete()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    item.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def register(request):
     form = UserCreationForm()
