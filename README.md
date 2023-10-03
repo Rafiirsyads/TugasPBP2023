@@ -94,12 +94,12 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
     - Menghasilkan kode HTML yang lebih ringkas karena banyak komponen telah diatur sebelumnya.
     - Mungkin memiliki ukuran file CSS yang lebih besar karena mengandung semua gaya komponen, bahkan jika kita tidak menggunakannya semua.
 
-**Kapan Menggunakan Tailwind CSS**
+- **Kapan Menggunakan Tailwind CSS**
     - Ketika ingin memiliki kontrol yang sangat mendalam atas desain tampilan
     - Ketika memerlukan fleksibilitas yang tinggi dalam mengatur tampilan elemen-elemen
     - Ketika ingin menghindari penambahan CSS yang tidak digunakan dalam proyek
 
-**Kapan Menggunakan Bootstrap**
+- **Kapan Menggunakan Bootstrap**
     - Ketika membutuhkan prototyping cepat dan ingin memanfaatkan komponen yang sudah jadi.
     - Ketika tidak memiliki banyak waktu untuk menyesuaikan desain tampilan secara mendalam
     - Ketika lebih suka struktur yang lebih kaku dan lebih sedikit keputusan desain yang harus dibuat
