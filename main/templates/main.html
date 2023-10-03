@@ -1,75 +1,78 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>SHS Item Store</h1>
-
-    <h5>Name:</h5>
-    <p>{{ name }}</p>
-
-    <h5>Class:</h5>
-    <p>{{ class }}</p>
-
-    <h5>NPM: </h5>
-    <p>{{ npm }}</p>
-
-    
-    <h3>Kamu menyimpan {{ total_items }} item pada aplikasi ini</h3>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.date_added}}</td>
-                <td>
-                    <a href="{% url 'main:increase_amount' item.id %}">
-                        <button>
-                            Add
-                        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">SHS Item Store</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto"> <!-- mx-auto untuk memusatkan teks "Welcome" -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome, {{ name }}</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto"> <!-- ml-auto untuk menggeser tombol Logout ke kanan -->
+                <li class="nav-item">
+                    <a href="{% url 'main:logout' %}" class="nav-link">
+                        <button class="btn btn-outline-light me-2" type="button">Logout</button>
                     </a>
-                </td>
-                <td>
-                    <a href="{% url 'main:decrease_amount' item.id %}">
-                        <button>
-                            Remove
-                        </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="{% url 'main:delete_item' item.id %}">
-                        <button>
-                            Delete
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-    
-    <br />
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New item
-        </button>
-    </a>
+    <div class="container mt-4">
+        <h1>Your Items</h1>
 
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-    
+        <h5>Name:</h5>
+        <p>{{ name }}</p>
+
+        <h5>Class:</h5>
+        <p>{{ class }}</p>
+
+        <h5>NPM: </h5>
+        <p>{{ npm }}</p>
+
+        <h3>You have {{ total_items }} items in this application</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.amount }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.date_added }}</td>
+                        <td>
+                            <a href="{% url 'main:increase_amount' item.id %}" class="btn btn-primary">
+                                +
+                            </a>
+                            <a href="{% url 'main:decrease_amount' item.id %}" class="btn btn-danger">
+                                -
+                            </a>
+                            <a href="{% url 'main:delete_item' item.id %}" class="btn btn-danger">
+                                Delete
+                            </a>
+                            <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-warning">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h5>Last login session: {{ last_login }}</h5>
+
+        <a href="{% url 'main:create_item' %}" class="btn btn-success">
+            Add New Item
+        </a>
+    </div>
 {% endblock content %}

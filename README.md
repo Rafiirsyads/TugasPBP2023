@@ -4,6 +4,106 @@
 ## Link Aplikasi
 Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
+## Jawaban Soal Tugas 5
+
+### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial).
+1. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+    - **LOGIN**
+        - Semua konten utama halaman ditempatkan dalam blok `content`, yang akan menampilkan elemen-elemen HTML pada halaman login
+        - Menggunakan `<div class="container mt-5">` sebagai container Bootstrap yang mengatur elemen-elemen dan memberikan margin atas sebanyak 5 satuan
+        - Menggunakan `row` dan `col-md-6` untuk membuat tata letak
+        - Menggunakan `<div class="card">` untuk mengelompokkan elemen-elemen dalam card
+        - Judul "Login" ditampilkan di dalam `card-header`
+        - Tombol "Login" menggunakan class `btn btn-primary` dari Bootstrap untuk tampilan yang menarik
+        - Pesan kesalahan, jika ada, ditampilkan dalam sebuah `div` dengan class `alert alert-danger`
+    - **REGISTER**
+        - Semua konten utama halaman ditempatkan dalam blok `content`, menampilkan elemen-elemen HTML pada halaman pendaftaran
+        - Menggunakan `<div class="container mt-5">` sebagai container Bootstrap yang mengatur elemen-elemen ke tengah halaman dan memberikan margin atas sebanyak 5 satuan
+        - Menggunakan `row` dan `col-md-6` untuk membuat tata letak
+        - Menggunakan `<div class="card">` untuk mengelompokkan elemen-elemen dalam card
+        - Judul "Register" ditampilkan di dalam `card-header`
+        - Tombol "Register" menggunakan class `btn btn-primary` dari Bootstrap untuk tampilan yang menarik
+        - Jika terdapat pesan kesalahan (pendaftaran gagal), pesan-pesan tersebut ditampilkan dalam sebuah div dengan class `alert alert-danger`
+    - **Tambah Item**
+        - Semua konten utama halaman ditempatkan dalam blok `content`
+        - Menggunakan `<div class="container mt-5">` sebagai container Bootstrap yang mengatur elemen-elemen dan memberikan margin atas sebanyak 5 satuan
+        - Menggunakan `row` dan `col-md-6` untuk membuat tata letak responsif
+        - Menggunakan `<div class="card">` untuk mengelompokkan elemen-elemen dalam kotak kartu yang estetis
+        - Judul "Add New Item" ditampilkan di dalam `card-header`
+        - Tombol "Add Item" menggunakan class `btn btn-success` dari Bootstrap
+2. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan **Card**.
+    - Menggunakan `<nav>` dengan class navbar dan atribut navbar-expand-lg untuk membuat navbar Bootstrap
+    - Navbar memiliki latar belakang gelap (`bg-dark`) dan teks putih (`navbar-dark`)
+    - Terdapat "Welcome, {{ name }}" yang muncul di tengah navbar (`mx-auto`) dan *button* "Logout" di sebelah kanan navbar (`ml-auto`). Tautan Logout menggunakan tombol Bootstrap dengan class `btn btn-outline-light`
+    - Menggunakan `<div class="container mt-4">` sebagai container utama untuk konten halaman
+
+### Jelaskan manfaat dari setiap *element selector* dan kapan waktu yang tepat untuk menggunakannya.
+1. **Universal Selector (*):**
+    - Memungkinkan untuk memilih semua elemen dalam dokumen HTML
+    - Biasanya digunakan ketika ingin mengatur beberapa properti gaya dasar untuk seluruh elemen, seperti mengatur margin atau padding secara umum
+2. **Type Selector (Tag Selector):**
+    - Digunakan untuk memilih semua elemen dengan jenis tag yang sama
+    - Digunakan ketika ingin menerapkan gaya umum pada semua elemen dengan jenis tag yang sama
+3. **Class Selector (.class):**
+    - Memungkinkan memilih elemen berdasarkan nilai atribut `class` yang diberikan
+    - Berguna ketika Anda ingin mengaplikasikan gaya pada sekelompok elemen yang memiliki karakteristik atau fungsi yang sama, seperti mengubah warna teks pada tombol dengan class `btn`
+4. **ID Selector (#id):**
+    - Memungkinkan untuk memilih elemen berdasarkan nilai atribut `id` yang unik
+    - Digunakan ketika ingin mengendalikan elemen dengan ID unik atau mengidentifikasi elemen tertentu
+5. **Descendant Selector (ancestor descendant):**
+    - Memungkinkan untuk memilih elemen turunan (nested) yang berada dalam elemen lain
+    - Digunakan ketika ingin menerapkan gaya pada elemen yang berada dalam struktur atau tata letak tertentu
+6. **Child Selector (parent > child):**
+    - Memungkinkan untuk memilih elemen anak langsung dari elemen induk tertentu
+    - Digunakan ketika ingin menerapkan gaya hanya pada elemen anak langsung dalam hubungan parent-child
+
+### Jelaskan HTML5 Tag yang kamu ketahui.
+1. `<html>`: Menandai awal dan akhir dari dokumen HTML
+2. `<head>`: Menyediakan informasi tentang dokumen HTML
+3. `<title>`: Menentukan judul untuk dokumen HTML
+4. `<body>`: Menandai awal dan akhir dari isi dokumen HTML
+5. `<h1> - <h6>`: Menandai judul dari dokumen HTML dengan ukuran yang berbeda-beda
+6. `<p>`: Menandai paragraf dalam dokumen HTML
+7. `<a>`: Membuat hyperlink ke page lain atau email address
+8. `<img>`: Menampilkan gambar dalam dokumen HTML
+9. `<button>`: Menandai tombol yang dapat diklik
+10. `<div>`: Menandai sebuah section
+11. `<!DOCTYPE html>`: Deklarasi dokumen HTML5 yang mendefinisikan jenis dokumen yang sedang digunakan
+
+### Jelaskan perbedaan antara *margin* dan *padding*.
+1. **Margin:**
+    - Margin merupakan area di sekeliling elemen HTML yang terletak di luar batas elemen tersebut
+    - Margin tidak memiliki latar belakang atau warna, sehingga dapat dianggap sebagai zona yang transparan
+    - Penggunaan margin adalah untuk mengendalikan jarak antara elemen dengan elemen-elemen lain yang berada di sekitarnya
+    - Dengan margin, kita dapat menentukan seberapa jauh elemen ini dari elemen-elemen lain yang berada di luar elemen tersebut
+2. **Padding**
+    - Padding merupakan ruang yang berada dalam elemen HTML, terletak di antara batas elemen dan kontennya
+    - Padding memiliki latar belakang dan warna yang identik dengan elemen itu sendiri
+    - Fungsi padding adalah untuk mengontrol jarak antara batas elemen dan isi (konten) elemen tersebut
+    - Dengan padding, kita dapat mengatur jarak antara elemen dan kontennya sendiri dengan presisi
+
+### Jelaskan perbedaan antara *framework* CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+1. **Tailwind CSS**
+    -  Framework CSS yang sangat fleksibel dan berbasis utility. Dapat membangun komponen dengan menggabungkan kelas-kelas yang tersedia.
+    - Memungkinkan kustomisasi yang sangat mendalam dengan mudah. Dapat mengubah hampir setiap aspek tampilan dengan mengedit file konfigurasi
+    - Menghasilkan kode HTML yang lebih besar karena memerlukan lebih banyak kelas dalam elemen HTML.
+    - Dapat lebih efisien dalam hal kinerja karena Anda hanya memuat kelas yang diperlukan.
+2. **Bootstrap**
+    - Lebih terstruktur dengan komponen-komponen yang sudah siap pakai dan gaya bawaan. Bootstrap memiliki desain yang lebih kaku.
+    - Lebih sederhana dalam hal kustomisasi, terutama jika ingin melakukan perubahan signifikan dalam gaya komponen.
+    - Menghasilkan kode HTML yang lebih ringkas karena banyak komponen telah diatur sebelumnya.
+    - Mungkin memiliki ukuran file CSS yang lebih besar karena mengandung semua gaya komponen, bahkan jika kita tidak menggunakannya semua.
+
+**Kapan Menggunakan Tailwind CSS**
+    - Ketika ingin memiliki kontrol yang sangat mendalam atas desain tampilan
+    - Ketika memerlukan fleksibilitas yang tinggi dalam mengatur tampilan elemen-elemen
+    - Ketika ingin menghindari penambahan CSS yang tidak digunakan dalam proyek
+
+**Kapan Menggunakan Bootstrap**
+    - Ketika membutuhkan prototyping cepat dan ingin memanfaatkan komponen yang sudah jadi.
+    - Ketika tidak memiliki banyak waktu untuk menyesuaikan desain tampilan secara mendalam
+    - Ketika lebih suka struktur yang lebih kaku dan lebih sedikit keputusan desain yang harus dibuat
+
 ## Jawaban Soal Tugas 4
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial).
