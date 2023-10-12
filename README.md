@@ -14,11 +14,23 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
         - Hapus kode *table* yang sudah dibuat sebelumnya
         - Tambahkan kode dibawah pada `main.html`
             ```
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                    <tbody id="item_table">
-                    </tbody>
-                </table>
+            <div class="row" id="item_container"></div>
+            ```
+        - Tambahkan kode untuk mengatur card pada refreshItems
+            ```
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">${item.fields.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Amount: ${item.fields.amount}</h6>
+                    <p class="card-text">${item.fields.description}</p>
+                    <p class="card-text">Date Added: ${item.fields.date_added}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger" data-url="{% url 'main:delete_item_ajax' 123 %}" onclick="deleteItem(this, ${item.pk})">Delete</button>
+                    <button class="btn btn-success" onclick="increaseAmount(${item.pk})">Increase</button>
+                    <button class="btn btn-warning" onclick="decreaseAmount(${item.pk})">Decrease</button>
+                    <a href="edit-item/${item.pk}"><button class="btn btn-primary">Edit</button></a>
+                </div>
             </div>
             ```
     2. Lakukan pengambilan task menggunakan AJAX GET.
