@@ -10,7 +10,7 @@ Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
 
 #### Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
 1. AJAX GET
-    1. Ubahlah kode tabel data item agar dapat mendukung AJAX GET.
+    1. Ubahlah kode *cards* data item agar dapat mendukung AJAX GET.
         - Hapus kode *table* yang sudah dibuat sebelumnya
         - Tambahkan kode dibawah pada `main.html`
             ```

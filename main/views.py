@@ -50,6 +50,19 @@ def get_item_json(request):
     product_item = Item.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
+def get_item_by_id(request, item_id):
+    # Mengambil item berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
+    item = get_object_or_404(Item, pk=item_id)
+    
+    # Mengonversi item ke format yang sesuai (misalnya, JSON)
+    item_data = {
+        'name': item.name,
+        'amount': item.amount,
+        'description': item.description,
+    }
+    
+    return JsonResponse(item_data)
+
 @csrf_exempt
 def add_item_ajax(request):
     if request.method == 'POST':
@@ -73,6 +86,7 @@ def delete_item_ajax(request, item_id):
         return HttpResponse(b"DELETED", status=200)
     return HttpResponseNotFound()
 
+@csrf_exempt
 def edit_item(request, id):
     # Get product berdasarkan ID
     item = Item.objects.get(pk = id)
@@ -88,25 +102,29 @@ def edit_item(request, id):
     context = {'form': form}
     return render(request, "edit_item.html", context)
 
+@csrf_exempt
 def increase_amount(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
-    item.amount += 1
-    item.save()
-    return HttpResponseRedirect(reverse('main:show_main'))
-
-def decrease_amount(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
-    
-    # Mengurangi jumlah stok sebanyak satu jika stok lebih besar dari 0
-    if item.amount > 0:
-        item.amount -= 1
+    if request.method == 'POST':
+        item = get_object_or_404(Item, pk=item_id)
+        item.amount += 1
         item.save()
-        
-    # Jika jumlah stok mencapai 0, hapus item dari inventori
-    if item.amount == 0:
-        item.delete()
-    
-    return HttpResponseRedirect(reverse('main:show_main'))
+        return JsonResponse({'status': 'ok', 'amount': item.amount})
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def decrease_amount(request, item_id):
+    if request.method == 'POST':
+        item = get_object_or_404(Item, pk=item_id)
+
+        if item.amount > 0:
+            item.amount -= 1
+            item.save()
+
+        if item.amount == 0:
+            item.delete()
+
+        return JsonResponse({'status': 'ok', 'amount': item.amount})
+    return HttpResponseNotFound()
 
 def delete_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
