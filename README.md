@@ -2,7 +2,7 @@
 # PBP A - 2206082221
 
 ## Link Aplikasi
-Berikut link aplikasi saya [SHS Item Store](https://itemstorerafi.adaptable.app)
+Berikut link aplikasi saya [SHS Item Store](http://rafi-irsyad21-tugas.pbp.cs.ui.ac.id)
 
 ## Jawaban Soal Tugas 6
 
