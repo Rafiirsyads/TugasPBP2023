@@ -4,12 +4,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">SHS Item Store</a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto"> <!-- mx-auto untuk memusatkan teks "Welcome" -->
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Welcome, {{ name }}</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto"> <!-- ml-auto untuk menggeser tombol Logout ke kanan -->
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="{% url 'main:logout' %}" class="nav-link">
                         <button class="btn btn-outline-light me-2" type="button">Logout</button>
@@ -28,16 +28,13 @@
         <h5>Class:</h5>
         <p>{{ class }}</p>
 
-        <h5>NPM: </h5>
+        <h5>NPM:</h5>
         <p>{{ npm }}</p>
 
         <h3 id="total_items">You have {{ total_items }} items</h3>
 
-        <!-- Menampilkan card item -->
-        <div class="row" id="item_container">
-        </div>
+        <div class="row" id="item_container"></div>
 
-        <!-- Modal untuk add item -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -50,11 +47,11 @@
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label for="name" class="col-form-label">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name"></input>
+                                <input type="text" class="form-control" id="name" name="name" />
                             </div>
                             <div class="mb-3">
                                 <label for="amount" class="col-form-label">Amount:</label>
-                                <input type="number" class="form-control" id="amount" name="amount"></input>
+                                <input type="number" class="form-control" id="amount" name="amount" />
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="col-form-label">Description:</label>
@@ -70,61 +67,23 @@
             </div>
         </div>
 
-        <!-- Modal untuk edit item -->
-        <div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editItemModalLabel">Edit Item</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editForm" onsubmit="return false;">
-                            {% csrf_token %}
-                            <input type="hidden" id="editItemId" name="id">
-                            <div class="mb-3">
-                                <label for="editItemName" class="col-form-label">Name:</label>
-                                <input type="text" class="form-control" id="editItemName" name="name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editItemAmount" class="col-form-label">Amount:</label>
-                                <input type="number" class="form-control" id="editItemAmount" name="amount">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editItemDescription" class="col-form-label">Description:</label>
-                                <textarea class="form-control" id="editItemDescription" name="description"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="button_edit" data-bs-dismiss="modal" onclick="editItem()">Edit Item</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <h5>Last login session: {{ last_login }}</h5>
-
-        <!-- <a href="{% url 'main:create_item' %}" class="btn btn-success">
-            Add New Item
-        </a> -->
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
     </div>
 
     <script>
         async function getItems() {
-            return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+            return fetch("{% url 'main:get_item_json' %}").then((res) => res.json());
         }
 
         async function refreshItems() {
-            document.getElementById("item_container").innerHTML = ""; // Bersihkan kontainer kartu
+            document.getElementById("item_container").innerHTML = "";
             const items = await getItems();
 
             items.forEach((item) => {
                 const card = document.createElement("div");
-                card.className = "col-md-4"; // Atur lebar kartu (sesuaikan sesuai kebutuhan)
+                card.className = "col-md-4";
 
                 card.innerHTML = `
                     <div class="card mb-4">
@@ -138,7 +97,7 @@
                             <button class="btn btn-danger" data-url="{% url 'main:delete_item_ajax' 123 %}" onclick="deleteItem(this, ${item.pk})">Delete</button>
                             <button class="btn btn-success" onclick="increaseAmount(${item.pk})">Increase</button>
                             <button class="btn btn-warning" onclick="decreaseAmount(${item.pk})">Decrease</button>
-                            <a href="edit-item/${item.pk}"> <button class="btn btn-primary btn-sm mx-1"> Edit </button> </a>
+                            <a href="edit-item/${item.pk}"><button class="btn btn-primary">Edit</button></a>
                         </div>
                     </div>
                 `;
@@ -146,34 +105,34 @@
                 document.getElementById("item_container").appendChild(card);
             });
 
-            // Perbarui total_items
+            // Update total_items
             document.getElementById("total_items").textContent = `You have ${items.length} items`;
         }
 
-        refreshItems()
+        refreshItems();
 
         function addItem() {
             fetch("{% url 'main:add_item_ajax' %}", {
                 method: "POST",
-                body: new FormData(document.querySelector('#form'))
-            }).then(refreshItems)
+                body: new FormData(document.querySelector('#form')),
+            }).then(refreshItems);
 
-            document.getElementById("form").reset()
-            return false
+            document.getElementById("form").reset();
+            return false;
         }
 
-        document.getElementById("button_add").onclick = addItem
+        document.getElementById("button_add").onclick = addItem;
 
         function deleteItem(button, id) {
             let url = button.getAttribute('data-url').replace('123', id);
             fetch(url, {
                 method: "DELETE",
-            }).then(refreshItems)
+            }).then(refreshItems);
         }
 
         async function increaseAmount(item_id) {
             const response = await fetch(`/increase_amount/${item_id}/`, {
-                method: 'POST'
+                method: 'POST',
             });
 
             if (response.status === 200) {
@@ -181,50 +140,14 @@
             }
         }
 
-        // Fungsi untuk mengurangi jumlah item
         async function decreaseAmount(item_id) {
             const response = await fetch(`/decrease_amount/${item_id}/`, {
-                method: 'POST'
+                method: 'POST',
             });
 
             if (response.status === 200) {
                 refreshItems();
             }
         }
-
-        function openEditModal(item_id) {
-            // Mengambil data item yang akan diedit dan mengisi formulir modal
-            fetch(`/get-item/${item_id}/`)
-                .then((response) => response.json())
-                .then((data) => {
-                    const item = data[0].fields;
-                    document.getElementById("editItemName").value = item.name;
-                    document.getElementById("editItemAmount").value = item.amount;
-                    document.getElementById("editItemDescription").value = item.description;
-                    document.getElementById("editItemId").value = item_id;
-                });
-
-            // Membuka modal edit
-            const editModal = new bootstrap.Modal(document.getElementById("editItemModal"));
-            editModal.show();
-        }
-
-        function editItem() {
-            const id = document.getElementById("editItemId").value;
-            const name = document.getElementById("editItemName").value;
-            const amount = document.getElementById("editItemAmount").value;
-            const description = document.getElementById("editItemDescription").value;
-
-            fetch(`/edit-item/${id}/`, {
-                method: "POST",
-                body: new FormData(document.querySelector('#editForm'))
-            }).then(refreshItems);
-
-            document.getElementById("editForm").reset();
-            return false;
-        }
-
-        document.getElementById("button_edit").onclick = editItem
-
     </script>
 {% endblock content %}
