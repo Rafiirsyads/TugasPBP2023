@@ -51,10 +51,8 @@ def get_item_json(request):
     return HttpResponse(serializers.serialize('json', product_item))
 
 def get_item_by_id(request, item_id):
-    # Mengambil item berdasarkan ID atau mengembalikan 404 jika tidak ditemukan
     item = get_object_or_404(Item, pk=item_id)
     
-    # Mengonversi item ke format yang sesuai (misalnya, JSON)
     item_data = {
         'name': item.name,
         'amount': item.amount,
@@ -87,7 +85,7 @@ def delete_item_ajax(request, item_id):
     return HttpResponseNotFound()
 
 @csrf_exempt
-def edit_item(request, id):
+def edit_item_ajax(request, id):
     # Get product berdasarkan ID
     item = Item.objects.get(pk = id)
 
@@ -100,7 +98,7 @@ def edit_item(request, id):
         return HttpResponseRedirect(reverse('main:show_main'))
 
     context = {'form': form}
-    return render(request, "edit_item.html", context)
+    return render(request, "edit_item_ajax.html", context)
 
 @csrf_exempt
 def increase_amount(request, item_id):

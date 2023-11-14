@@ -31,9 +31,9 @@
         <h5>NPM:</h5>
         <p>{{ npm }}</p>
 
-        <h3 id="total_items">You have {{ total_items }} items</h3>
+        <h3 id="total_items" class="text-center">You have {{ total_items }} items</h3>
 
-        <div class="row" id="item_container"></div>
+        <div class="row justify-content-center" id="item_container"></div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -67,9 +67,17 @@
             </div>
         </div>
 
-        <h5>Last login session: {{ last_login }}</h5>
+        <h5 class="text-center">Last login session: {{ last_login }}</h5>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+        <a href="{% url 'main:create_item' %}">
+            <button>
+                Add New Product
+            </button>
+        </a>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+        </div>
     </div>
 
     <script>
@@ -97,7 +105,7 @@
                             <button class="btn btn-danger" data-url="{% url 'main:delete_item_ajax' 123 %}" onclick="deleteItem(this, ${item.pk})">Delete</button>
                             <button class="btn btn-success" onclick="increaseAmount(${item.pk})">Increase</button>
                             <button class="btn btn-warning" onclick="decreaseAmount(${item.pk})">Decrease</button>
-                            <a href="edit-item/${item.pk}"><button class="btn btn-primary">Edit</button></a>
+                            <a href="edit-item-ajax/${item.pk}"><button class="btn btn-primary">Edit</button></a>
                         </div>
                     </div>
                 `;
